@@ -50,7 +50,7 @@ class MainActivity : AppCompatActivity() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val soundUri = Uri.parse("/storage/emulated/0/Music/1676641724335.mp3")
             val audioAttributes =
-                AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_ALARM).build()
+                AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION).build()
             val name = "Local Notification"
             val descriptionText = "This is a test notification"
             val importance = NotificationManager.IMPORTANCE_HIGH
@@ -82,13 +82,12 @@ val soundUri = Uri.parse("/storage/emulated/0/Music/1676641724335.mp3")
             .setSmallIcon(androidx.core.R.drawable.notification_bg)
             .setContentTitle("Hello!")
             .setContentText("This is your local notification.")
-            .setPriority(NotificationCompat.PRIORITY_MAX)
+            .setPriority(NotificationCompat.PRIORITY_DEFAULT)
             .setSound(soundUri)
             .setContentIntent(pendingIntent)
             .setVisibility(VISIBILITY_PUBLIC)
             .setShowWhen(true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
-            .setPriority(2)
 
 
         with(NotificationManagerCompat.from(this)) {
