@@ -49,8 +49,10 @@ class MainActivity : AppCompatActivity() {
     private fun createNotificationChannel() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             val soundUri = Uri.parse("/storage/emulated/0/Music/1676641724335.mp3")
-            val audioAttributes =
-                AudioAttributes.Builder().setUsage(AudioAttributes.USAGE_NOTIFICATION).build()
+            val audioAttributes = AudioAttributes.Builder()
+                .setContentType(AudioAttributes.CONTENT_TYPE_MUSIC) // Use MUSIC instead of SONIFICATION
+                .setUsage(AudioAttributes.USAGE_MEDIA) // Use MEDIA instead of NOTIFICATION
+                .build()
             val name = "Local Notification"
             val descriptionText = "This is a test notification"
             val importance = NotificationManager.IMPORTANCE_HIGH
