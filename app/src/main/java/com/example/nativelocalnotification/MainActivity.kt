@@ -106,34 +106,4 @@ val soundUri = Uri.parse("/storage/emulated/0/Music/1676641724335.mp3")
             notify(NOTIFICATION_ID, builder.build())
         }
     }
-
-
-    private fun getSoundUriFromFile(filePath: String): Uri? {
-        val file = File(filePath)
-        return if (file.exists()) {
-            Uri.fromFile(file)
-        } else {
-            Log.e("Notification", "Sound file not found: $filePath")
-            null
-        }
-    }
-
-
-
-    private fun getSoundUriFromMediaStore(context: Context, fileName: String): Uri? {
-        val projection = arrayOf(MediaStore.Audio.Media._ID)
-        val selection = "${MediaStore.Audio.Media.DISPLAY_NAME} LIKE ?"
-        val selectionArgs = arrayOf("%$fileName%") // Using LIKE for flexible matching
-
-        context.contentResolver.query(
-            MediaStore.Audio.Media.EXTERNAL_CONTENT_URI,
-            projection, selection, selectionArgs, null
-        )?.use { cursor ->
-            if (cursor.moveToFirst()) {  // Change moveToNext() → moveToFirst()
-                val id = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media._ID))
-                return ContentUris.withAppendedId(MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, id)
-            }
-        }
-        return null
-    }
 }
