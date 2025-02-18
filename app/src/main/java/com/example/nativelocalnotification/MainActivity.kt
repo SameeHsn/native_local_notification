@@ -85,14 +85,10 @@ val soundUri = Uri.parse("/storage/emulated/0/Music/1676641724335.mp3")
             .setPriority(NotificationCompat.PRIORITY_MAX)
             .setSound(soundUri)
             .setContentIntent(pendingIntent)
-            .setAutoCancel(true)
-            .setAllowSystemGeneratedContextualActions(true)
             .setVisibility(VISIBILITY_PUBLIC)
-            .setOngoing(true)
-            .setLocalOnly(true)
             .setShowWhen(true)
             .setCategory(NotificationCompat.CATEGORY_ALARM)
-            .setPriority(1000)
+            .setPriority(2)
 
 
         with(NotificationManagerCompat.from(this)) {
